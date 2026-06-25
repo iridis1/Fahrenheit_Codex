@@ -23,6 +23,20 @@ npm.cmd start
 
 Standaard draait de service op poort `3000`. Gebruik `PORT` om dit te wijzigen.
 
+## Swagger
+
+Na het starten is de interactieve Swagger-documentatie beschikbaar op:
+
+```text
+http://localhost:3000/api-docs
+```
+
+De OpenAPI-specificatie staat op:
+
+```text
+http://localhost:3000/openapi.json
+```
+
 ## Endpoint
 
 ```text
