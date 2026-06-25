@@ -54,3 +54,5 @@ Voorbeeld:
   "fahrenheit": 68
 }
 ```
+
+Waarden lager dan het absolute nulpunt geven een `400`-foutmelding terug.

@@ -1,6 +1,6 @@
 import express, { type Request, type Response } from "express";
 import swaggerUi from "swagger-ui-express";
-import { convertTemperature, type TemperatureUnit } from "./temperature.js";
+import { convertTemperature, isBelowAbsoluteZero, type TemperatureUnit } from "./temperature.js";
 
 const app = express();
 const port = Number(process.env.PORT ?? 3000);
@@ -64,7 +64,7 @@ const openApiDocument = {
             }
           },
           "400": {
-            description: "Ongeldige of ontbrekende queryparameter.",
+            description: "Ongeldige, ontbrekende of natuurkundig onmogelijke queryparameter.",
             content: {
               "application/json": {
                 schema: {
@@ -112,6 +112,12 @@ app.get("/convert", (req: Request, res: Response) => {
   if (!Number.isFinite(value)) {
     return res.status(400).json({
       error: `${unit} moet een geldig getal zijn.`
+    });
+  }
+
+  if (isBelowAbsoluteZero(unit, value)) {
+    return res.status(400).json({
+      error: `${unit} mag niet lager zijn dan het absolute nulpunt.`
     });
   }
 

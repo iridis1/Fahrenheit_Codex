@@ -6,6 +6,12 @@ export interface TemperatureResult {
   fahrenheit: number;
 }
 
+const absoluteZeroByUnit: Record<TemperatureUnit, number> = {
+  kelvin: 0,
+  celsius: -273.15,
+  fahrenheit: -459.67
+};
+
 export function convertTemperature(unit: TemperatureUnit, value: number): TemperatureResult {
   const celsius = toCelsius(unit, value);
 
@@ -14,6 +20,10 @@ export function convertTemperature(unit: TemperatureUnit, value: number): Temper
     celsius: round(celsius),
     fahrenheit: round((celsius * 9) / 5 + 32)
   };
+}
+
+export function isBelowAbsoluteZero(unit: TemperatureUnit, value: number): boolean {
+  return value < absoluteZeroByUnit[unit];
 }
 
 function toCelsius(unit: TemperatureUnit, value: number): number {
