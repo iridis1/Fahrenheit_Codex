@@ -23,6 +23,12 @@ npm.cmd start
 
 Standaard draait de service op poort `3000`. Gebruik `PORT` om dit te wijzigen.
 
+## Testen
+
+```powershell
+npm.cmd test
+```
+
 ## Swagger
 
 Na het starten is de interactieve Swagger-documentatie beschikbaar op:
