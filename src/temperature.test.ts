@@ -1,4 +1,3 @@
-import { describe, expect, it } from "vitest";
 import { convertTemperature, isBelowAbsoluteZero } from "./temperature.js";
 
 describe("convertTemperature", () => {
