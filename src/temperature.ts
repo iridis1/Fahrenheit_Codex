@@ -6,37 +6,39 @@ export interface TemperatureResult {
   fahrenheit: number;
 }
 
-const absoluteZeroByUnit: Record<TemperatureUnit, number> = {
-  kelvin: 0,
-  celsius: -273.15,
-  fahrenheit: -459.67
-};
-
-export function convertTemperature(unit: TemperatureUnit, value: number): TemperatureResult {
-  const celsius = toCelsius(unit, value);
-
-  return {
-    kelvin: round(celsius + 273.15),
-    celsius: round(celsius),
-    fahrenheit: round((celsius * 9) / 5 + 32)
+export class TemperatureConverter {
+  private readonly absoluteZeroByUnit: Record<TemperatureUnit, number> = {
+    kelvin: 0,
+    celsius: -273.15,
+    fahrenheit: -459.67
   };
-}
 
-export function isBelowAbsoluteZero(unit: TemperatureUnit, value: number): boolean {
-  return value < absoluteZeroByUnit[unit];
-}
+  convertTemperature(unit: TemperatureUnit, value: number): TemperatureResult {
+    const celsius = this.toCelsius(unit, value);
 
-function toCelsius(unit: TemperatureUnit, value: number): number {
-  switch (unit) {
-    case "kelvin":
-      return value - 273.15;
-    case "fahrenheit":
-      return ((value - 32) * 5) / 9;
-    case "celsius":
-      return value;
+    return {
+      kelvin: this.round(celsius + 273.15),
+      celsius: this.round(celsius),
+      fahrenheit: this.round((celsius * 9) / 5 + 32)
+    };
   }
-}
 
-function round(value: number): number {
-  return Math.round((value + Number.EPSILON) * 100) / 100;
+  isBelowAbsoluteZero(unit: TemperatureUnit, value: number): boolean {
+    return value < this.absoluteZeroByUnit[unit];
+  }
+
+  private toCelsius(unit: TemperatureUnit, value: number): number {
+    switch (unit) {
+      case "kelvin":
+        return value - 273.15;
+      case "fahrenheit":
+        return ((value - 32) * 5) / 9;
+      case "celsius":
+        return value;
+    }
+  }
+
+  private round(value: number): number {
+    return Math.round((value + Number.EPSILON) * 100) / 100;
+  }
 }

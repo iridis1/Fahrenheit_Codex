@@ -1,12 +1,13 @@
 import express, { type Request, type Response } from "express";
 import swaggerUi from "swagger-ui-express";
-import { convertTemperature, isBelowAbsoluteZero, type TemperatureUnit } from "./temperature.js";
+import { TemperatureConverter, type TemperatureUnit } from "./temperature.js";
 
 const units: TemperatureUnit[] = ["kelvin", "celsius", "fahrenheit"];
 
 export function createApp(port = 3000) {
   const app = express();
   const openApiDocument = createOpenApiDocument(port);
+  const temperatureConverter = new TemperatureConverter();
 
   app.get("/openapi.json", (_req: Request, res: Response) => {
     res.json(openApiDocument);
@@ -40,13 +41,13 @@ export function createApp(port = 3000) {
       });
     }
 
-    if (isBelowAbsoluteZero(unit, value)) {
+    if (temperatureConverter.isBelowAbsoluteZero(unit, value)) {
       return res.status(400).json({
         error: `${unit} mag niet lager zijn dan het absolute nulpunt.`
       });
     }
 
-    return res.json(convertTemperature(unit, value));
+    return res.json(temperatureConverter.convertTemperature(unit, value));
   });
 
   app.get("/", (_req: Request, res: Response) => {
