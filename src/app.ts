@@ -1,6 +1,6 @@
 import express, { type Request, type Response } from "express";
 import swaggerUi from "swagger-ui-express";
-import { TemperatureConverter, type TemperatureUnit } from "./temperature.js";
+import { TemperatureConverter, type TemperatureUnit } from "./temperature";
 
 const units: TemperatureUnit[] = ["kelvin", "celsius", "fahrenheit"];
 

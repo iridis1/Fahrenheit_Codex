@@ -1,4 +1,4 @@
-import { TemperatureConverter } from "./temperature.js";
+import { TemperatureConverter } from "./temperature";
 
 const temperatureConverter = new TemperatureConverter();
 
