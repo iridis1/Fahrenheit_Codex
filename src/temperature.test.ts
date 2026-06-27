@@ -34,6 +34,19 @@ describe("convertTemperature", () => {
       fahrenheit: -459.67
     });
   });
+
+  it("rondt temperaturen af op maximaal twee cijfers achter de punt", () => {
+    const result = temperatureConverter.convertTemperature("fahrenheit", 1);
+
+    expect(getFractionDigitCount(result.kelvin)).toBeLessThanOrEqual(2);
+    expect(getFractionDigitCount(result.celsius)).toBeLessThanOrEqual(2);
+    expect(getFractionDigitCount(result.fahrenheit)).toBeLessThanOrEqual(2);
+    expect(result).toEqual({
+      kelvin: 255.93,
+      celsius: -17.22,
+      fahrenheit: 1
+    });
+  });
 });
 
 describe("isBelowAbsoluteZero", () => {
@@ -50,3 +63,7 @@ describe("isBelowAbsoluteZero", () => {
     expect(temperatureConverter.isBelowAbsoluteZero("celsius", 20)).toBe(false);
   });
 });
+
+function getFractionDigitCount(value: number): number {
+  return value.toString().split(".")[1]?.length ?? 0;
+}
