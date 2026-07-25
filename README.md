@@ -10,14 +10,29 @@ npm.cmd install
 
 ## Ontwikkelen
 
+Start de API:
+
 ```powershell
 npm.cmd run dev
+```
+
+Start de Vue-front-end in een tweede terminal:
+
+```powershell
+npm.cmd run dev:client
+```
+
+De front-end draait standaard op:
+
+```text
+http://127.0.0.1:5173
 ```
 
 ## Build en starten
 
 ```powershell
 npm.cmd run build
+npm.cmd run build:client
 npm.cmd start
 ```
 

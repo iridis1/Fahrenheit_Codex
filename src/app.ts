@@ -1,4 +1,6 @@
 import express, { type Request, type Response } from "express";
+import { existsSync } from "node:fs";
+import path from "node:path";
 import swaggerUi from "swagger-ui-express";
 import { TemperatureConverter, type TemperatureUnit } from "./temperature";
 
@@ -49,6 +51,12 @@ export function createApp(port = 3000) {
 
     return res.json(temperatureConverter.convertTemperature(unit, value));
   });
+
+  const clientBuildPath = path.join(process.cwd(), "dist-client");
+
+  if (process.env.NODE_ENV !== "test" && existsSync(clientBuildPath)) {
+    app.use(express.static(clientBuildPath));
+  }
 
   app.get("/", (_req: Request, res: Response) => {
     res.json({
