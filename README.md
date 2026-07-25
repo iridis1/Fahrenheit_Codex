@@ -5,7 +5,7 @@ TypeScript/Express-webservice voor temperatuurconversies tussen Kelvin, Fahrenhe
 ## Installeren
 
 ```powershell
-npm.cmd install
+npm install
 ```
 
 ## Ontwikkelen
@@ -13,13 +13,13 @@ npm.cmd install
 Start de API:
 
 ```powershell
-npm.cmd run dev
+npm run dev
 ```
 
 Start de Vue-front-end in een tweede terminal:
 
 ```powershell
-npm.cmd run dev:client
+npm run dev:client
 ```
 
 De front-end draait standaard op:
@@ -31,9 +31,9 @@ http://127.0.0.1:5173
 ## Build en starten
 
 ```powershell
-npm.cmd run build
-npm.cmd run build:client
-npm.cmd start
+npm run build
+npm run build:client
+npm start
 ```
 
 Standaard draait de service op poort `3000`. Gebruik `PORT` om dit te wijzigen.
@@ -41,7 +41,7 @@ Standaard draait de service op poort `3000`. Gebruik `PORT` om dit te wijzigen.
 ## Testen
 
 ```powershell
-npm.cmd test
+npm test
 ```
 
 ## Swagger

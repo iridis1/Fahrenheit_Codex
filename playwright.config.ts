@@ -11,13 +11,13 @@ export default defineConfig({
   },
   webServer: [
     {
-      command: "npm.cmd run serve:api",
+      command: "npm run serve:api",
       url: "http://127.0.0.1:3000/openapi.json",
       reuseExistingServer: !process.env.CI,
       timeout: 120_000
     },
     {
-      command: "npm.cmd run dev:client",
+      command: "npm run dev:client",
       url: "http://127.0.0.1:5173",
       reuseExistingServer: !process.env.CI,
       timeout: 120_000
@@ -26,7 +26,7 @@ export default defineConfig({
   projects: [
     {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"], channel: "msedge" }
+      use: { ...devices["Desktop Chrome"] }
     }
   ]
 });
