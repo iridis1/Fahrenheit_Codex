@@ -7,9 +7,11 @@
     "build": "tsc",
     "build:client": "vite build",
     "dev": "tsx watch src/index.ts",
+    "serve:api": "tsx src/index.ts",
     "dev:client": "vite --host 127.0.0.1",
     "start": "node dist/index.js",
-    "test": "jest --verbose"
+    "test": "jest --verbose",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "express": "^5.1.0",
@@ -17,17 +19,18 @@
     "vue": "^3.5.40"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^6.0.8",
+    "@playwright/test": "^1.62.0",
     "@types/express": "^5.0.3",
     "@types/jest": "^30.0.0",
     "@types/node": "^24.0.4",
     "@types/supertest": "^7.2.0",
     "@types/swagger-ui-express": "^4.1.8",
+    "@vitejs/plugin-vue": "^6.0.8",
     "jest": "^30.4.2",
     "supertest": "^7.2.2",
     "ts-jest": "^29.4.11",
     "tsx": "^4.20.3",
-    "vite": "^8.1.5",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vite": "^8.1.5"
   }
 }

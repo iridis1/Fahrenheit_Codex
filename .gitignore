@@ -4,3 +4,5 @@ dist-client/
 .npm-cache/
 .env
 npm-debug.log*
+playwright-report/
+test-results/
