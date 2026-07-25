@@ -7,6 +7,8 @@ export interface TemperatureResult {
 }
 
 export class TemperatureConverter {
+  private readonly maxDigitsAfterDecimalPoint = 2;
+
   private readonly absoluteZeroByUnit: Record<TemperatureUnit, number> = {
     kelvin: 0,
     celsius: -273.15,
@@ -17,9 +19,9 @@ export class TemperatureConverter {
     const celsius = this.toCelsius(unit, value);
 
     return {
-      kelvin: this.round(celsius + 273.15),
-      celsius: this.round(celsius),
-      fahrenheit: this.round((celsius * 9) / 5 + 32)
+      kelvin: this.roundToMaxTwoDigitsAfterDecimalPoint(celsius + 273.15),
+      celsius: this.roundToMaxTwoDigitsAfterDecimalPoint(celsius),
+      fahrenheit: this.roundToMaxTwoDigitsAfterDecimalPoint((celsius * 9) / 5 + 32)
     };
   }
 
@@ -38,7 +40,9 @@ export class TemperatureConverter {
     }
   }
 
-  private round(value: number): number {
-    return Math.round((value + Number.EPSILON) * 100) / 100;
+  private roundToMaxTwoDigitsAfterDecimalPoint(value: number): number {
+    const factor = 10 ** this.maxDigitsAfterDecimalPoint;
+
+    return Math.round((value + Number.EPSILON) * factor) / factor;
   }
 }
