@@ -50,6 +50,11 @@ public sealed class TemperatureController : ControllerBase
             return BadRequest(new ErrorResponse($"{unit.QueryName} moet een geldig getal zijn."));
         }
 
+        if (value > 100000)
+        {
+            return BadRequest(new ErrorResponse("Waarde it te groot."));
+        }
+
         if (_temperatureConverter.IsBelowAbsoluteZero(unit, value))
         {
             return BadRequest(new ErrorResponse(
