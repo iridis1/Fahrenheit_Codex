@@ -41,5 +41,5 @@ public sealed class TemperatureConverter
     }
 
     private static double Round(double value) =>
-        Math.Floor((value + double.Epsilon) * 100 + 0.5) / 100;
+        Math.Round(value, 2, MidpointRounding.AwayFromZero);
 }
