@@ -15,9 +15,9 @@ public sealed class ConvertEndpointOperationFilter : IOperationFilter
 
         operation.Parameters =
         [
-            CreateTemperatureParameter("kelvin", 100, "Temperatuur in Kelvin."),
-            CreateTemperatureParameter("celsius", 20, "Temperatuur in Celsius."),
-            CreateTemperatureParameter("fahrenheit", 300, "Temperatuur in Fahrenheit.")
+            CreateTemperatureParameter("kelvin", 100, "Temperature in Kelvin."),
+            CreateTemperatureParameter("celsius", 20, "Temperature in Celsius."),
+            CreateTemperatureParameter("fahrenheit", 300, "Temperature in Fahrenheit.")
         ];
     }
 

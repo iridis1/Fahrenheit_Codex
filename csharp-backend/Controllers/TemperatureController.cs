@@ -34,7 +34,7 @@ public sealed class TemperatureController : ControllerBase
         if (providedUnits.Length != 1)
         {
             return BadRequest(new ErrorResponse(
-                "Geef precies een temperatuur mee: kelvin, celsius of fahrenheit."));
+                "Provide exactly one temperature value: kelvin, celsius, or fahrenheit."));
         }
 
         var unit = providedUnits[0];
@@ -42,23 +42,23 @@ public sealed class TemperatureController : ControllerBase
 
         if (rawValue.Count > 1)
         {
-            return BadRequest(new ErrorResponse($"Gebruik maar een waarde voor {unit.GetQueryName()}."));
+            return BadRequest(new ErrorResponse($"Use only one value for {unit.GetQueryName()}."));
         }
 
         if (!TryReadNumber(rawValue, out var value))
         {
-            return BadRequest(new ErrorResponse($"{unit.GetQueryName()} moet een geldig getal zijn."));
+            return BadRequest(new ErrorResponse($"{unit.GetQueryName()} must be a valid number."));
         }
 
         if (value > 100000)
         {
-            return BadRequest(new ErrorResponse("Waarde is te hoog."));
+            return BadRequest(new ErrorResponse("Value is too high."));
         }
 
         if (_temperatureConverter.IsBelowAbsoluteZero(unit, value))
         {
             return BadRequest(new ErrorResponse(
-                $"{unit.GetQueryName()} mag niet lager zijn dan het absolute nulpunt."));
+                $"{unit.GetQueryName()} cannot be below absolute zero."));
         }
 
         return Ok(_temperatureConverter.ConvertTemperature(unit, value));
@@ -68,7 +68,7 @@ public sealed class TemperatureController : ControllerBase
     public IActionResult GetInfo() =>
         new JsonResult(new
         {
-            message = "Gebruik /convert met kelvin, celsius of fahrenheit.",
+            message = "Use /convert with kelvin, celsius, or fahrenheit.",
             examples = new[] { "/convert?kelvin=100", "/convert?celsius=20", "/convert?fahrenheit=300" }
         });
 
