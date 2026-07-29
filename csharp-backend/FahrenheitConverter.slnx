@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="FahrenheitConverter.Api.csproj" />
+  <Project Path="..\csharp-backend.Tests\FahrenheitConverter.Api.Tests.csproj" />
 </Solution>
