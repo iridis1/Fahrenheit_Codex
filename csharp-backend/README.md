@@ -1,16 +1,16 @@
 # Fahrenheit Converter Service - C# backend
 
-ASP.NET Core-versie van de TypeScript/Express-backend voor temperatuurconversies tussen Kelvin, Fahrenheit en Celsius.
+ASP.NET Core version of the TypeScript/Express backend for temperature conversions between Kelvin, Fahrenheit, and Celsius.
 
-Swagger/OpenAPI wordt geleverd door `Swashbuckle.AspNetCore`.
+Swagger/OpenAPI is provided by `Swashbuckle.AspNetCore`.
 
-## Ontwikkelen
+## Development
 
 ```powershell
 dotnet run
 ```
 
-Standaard draait de service op poort `3000`. Gebruik `PORT` om dit te wijzigen:
+By default, the service runs on port `3000`. Use `PORT` to change this:
 
 ```powershell
 $env:PORT=5000
@@ -25,13 +25,13 @@ dotnet build
 
 ## Swagger
 
-Na het starten is de interactieve Swagger-documentatie beschikbaar op:
+After startup, the interactive Swagger documentation is available at:
 
 ```text
 http://localhost:3000/api-docs
 ```
 
-De OpenAPI-specificatie staat op:
+The OpenAPI specification is available at:
 
 ```text
 http://localhost:3000/openapi.json
@@ -45,7 +45,7 @@ GET /convert?celsius=20
 GET /convert?fahrenheit=300
 ```
 
-Voorbeeld:
+Example:
 
 ```json
 {
@@ -55,4 +55,4 @@ Voorbeeld:
 }
 ```
 
-Waarden lager dan het absolute nulpunt geven een `400`-foutmelding terug.
+Values below absolute zero return a `400` error response.

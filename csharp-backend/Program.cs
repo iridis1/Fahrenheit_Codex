@@ -20,7 +20,7 @@ builder.Services.AddSwaggerGen(options =>
     {
         Title = "Fahrenheit Converter Service",
         Version = "1.0.0",
-        Description = "Webservice voor temperatuurconversies tussen Kelvin, Celsius en Fahrenheit."
+        Description = "Web service for temperature conversions between Kelvin, Celsius, and Fahrenheit."
     });
     options.OperationFilter<ConvertEndpointOperationFilter>();
 });
