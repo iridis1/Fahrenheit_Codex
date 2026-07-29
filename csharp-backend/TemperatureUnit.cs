@@ -1,8 +1,20 @@
 namespace FahrenheitConverter.Api;
 
-public readonly record struct TemperatureUnit(string QueryName)
+public enum TemperatureUnit
 {
-    public static readonly TemperatureUnit Kelvin = new("kelvin");
-    public static readonly TemperatureUnit Celsius = new("celsius");
-    public static readonly TemperatureUnit Fahrenheit = new("fahrenheit");
+    Kelvin,
+    Celsius,
+    Fahrenheit
+}
+
+public static class TemperatureUnitExtensions
+{
+    public static string GetQueryName(this TemperatureUnit unit) =>
+        unit switch
+        {
+            TemperatureUnit.Kelvin => "kelvin",
+            TemperatureUnit.Celsius => "celsius",
+            TemperatureUnit.Fahrenheit => "fahrenheit",
+            _ => throw new System.ArgumentOutOfRangeException(nameof(unit), unit, null)
+        };
 }

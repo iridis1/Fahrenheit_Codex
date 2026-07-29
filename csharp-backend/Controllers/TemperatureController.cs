@@ -28,7 +28,7 @@ public sealed class TemperatureController : ControllerBase
     public IActionResult Convert()
     {
         var providedUnits = Units
-            .Where(unit => Request.Query.ContainsKey(unit.QueryName))
+            .Where(unit => Request.Query.ContainsKey(unit.GetQueryName()))
             .ToArray();
 
         if (providedUnits.Length != 1)
@@ -38,27 +38,27 @@ public sealed class TemperatureController : ControllerBase
         }
 
         var unit = providedUnits[0];
-        var rawValue = Request.Query[unit.QueryName];
+        var rawValue = Request.Query[unit.GetQueryName()];
 
         if (rawValue.Count > 1)
         {
-            return BadRequest(new ErrorResponse($"Gebruik maar een waarde voor {unit.QueryName}."));
+            return BadRequest(new ErrorResponse($"Gebruik maar een waarde voor {unit.GetQueryName()}."));
         }
 
         if (!TryReadNumber(rawValue, out var value))
         {
-            return BadRequest(new ErrorResponse($"{unit.QueryName} moet een geldig getal zijn."));
+            return BadRequest(new ErrorResponse($"{unit.GetQueryName()} moet een geldig getal zijn."));
         }
 
         if (value > 100000)
         {
-            return BadRequest(new ErrorResponse("Waarde it te groot."));
+            return BadRequest(new ErrorResponse("Waarde is te hoog."));
         }
 
         if (_temperatureConverter.IsBelowAbsoluteZero(unit, value))
         {
             return BadRequest(new ErrorResponse(
-                $"{unit.QueryName} mag niet lager zijn dan het absolute nulpunt."));
+                $"{unit.GetQueryName()} mag niet lager zijn dan het absolute nulpunt."));
         }
 
         return Ok(_temperatureConverter.ConvertTemperature(unit, value));
