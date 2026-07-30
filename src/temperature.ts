@@ -27,6 +27,11 @@ export class TemperatureConverter {
     return value < this.absoluteZeroByUnit[unit];
   }
 
+  isFreezingTemp(unit: TemperatureUnit, value: number): boolean {
+    const celsius = this.toCelsius(unit, value);
+    return celsius <= 0;
+  }
+
   private toCelsius(unit: TemperatureUnit, value: number): number {
     switch (unit) {
       case "kelvin":

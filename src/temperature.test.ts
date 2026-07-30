@@ -50,3 +50,18 @@ describe("isBelowAbsoluteZero", () => {
     expect(temperatureConverter.isBelowAbsoluteZero("celsius", 20)).toBe(false);
   });
 });
+
+describe("isFreezingTemp", () => {
+  it("herkent vriespunten en lagere temperaturen", () => {
+    expect(temperatureConverter.isFreezingTemp("celsius", 0)).toBe(true);
+    expect(temperatureConverter.isFreezingTemp("celsius", -10)).toBe(true);
+    expect(temperatureConverter.isFreezingTemp("fahrenheit", 32)).toBe(true);
+    expect(temperatureConverter.isFreezingTemp("kelvin", 273.15)).toBe(true);
+  });
+
+  it("herkent temperaturen boven het vriespunt niet als vriespunt", () => {
+    expect(temperatureConverter.isFreezingTemp("celsius", 1)).toBe(false);
+    expect(temperatureConverter.isFreezingTemp("fahrenheit", 33)).toBe(false);
+    expect(temperatureConverter.isFreezingTemp("kelvin", 300)).toBe(false);
+  });
+});
