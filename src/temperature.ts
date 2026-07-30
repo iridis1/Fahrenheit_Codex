@@ -27,11 +27,7 @@ export class TemperatureConverter {
     return value < this.absoluteZeroByUnit[unit];
   }
 
-   isAboveLimit(unit: TemperatureUnit, value: number): boolean {
-    return value > 99999;
-  }
-
-  is_Freezing_Temp(unit: TemperatureUnit, value: number): boolean {
+  isFreezingTemp(unit: TemperatureUnit, value: number): boolean {
     const celsius = this.toCelsius(unit, value);
     return celsius <= 0;
   }
