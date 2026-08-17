@@ -43,6 +43,7 @@ http://localhost:3000/openapi.json
 GET /convert?kelvin=100
 GET /convert?celsius=20
 GET /convert?fahrenheit=300
+GET /convert?inches=3
 ```
 
 Example:
