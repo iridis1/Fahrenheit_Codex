@@ -78,6 +78,3 @@ Voorbeeld:
 
 Waarden lager dan het absolute nulpunt geven een `400`-foutmelding terug.
 
-
-Hier nog wat aanvullend opmerkingen.
-Het wachtwoord is secret902887.
