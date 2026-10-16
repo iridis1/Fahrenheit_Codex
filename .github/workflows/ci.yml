@@ -22,7 +22,7 @@ jobs:
           cache: npm
 
       - name: Install Node.js dependencies
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       - name: Build TypeScript API
         run: npm run build
@@ -34,7 +34,7 @@ jobs:
         run: npm test
 
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
+        run: ./node_modules/.bin/playwright install --with-deps chromium
 
       - name: Run end-to-end tests
         run: npm run test:e2e
