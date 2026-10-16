@@ -1,0 +1,52 @@
+name: Release build
+
+on: push
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Build TypeScript API
+        run: npm run build
+
+      - name: Build Vue client
+        run: npm run build:client
+
+      - name: Package release builds
+        shell: bash
+        run: |
+          mkdir -p release/node-api release/vue-client
+          cp -R dist/. release/node-api/
+          cp package.json package-lock.json release/node-api/
+          cp -R dist-client/. release/vue-client/
+          cd release
+          zip -r "fahrenheit-node-api-${GITHUB_RUN_NUMBER}.zip" node-api
+          zip -r "fahrenheit-vue-client-${GITHUB_RUN_NUMBER}.zip" vue-client
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          tag="v1.0.${GITHUB_RUN_NUMBER}"
+          gh release create "$tag" \
+            release/fahrenheit-node-api-${GITHUB_RUN_NUMBER}.zip \
+            release/fahrenheit-vue-client-${GITHUB_RUN_NUMBER}.zip \
+            --title "Release $tag" \
+            --generate-notes
