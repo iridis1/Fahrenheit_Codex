@@ -10,6 +10,7 @@
     "serve:api": "tsx src/server/index.ts",
     "dev:client": "vite --host 127.0.0.1",
     "start": "node dist/server/index.js",
+    "test": "jest --verbose && vitest run && playwright test",    
     "test:server": "jest --verbose",
     "test:client": "vitest run",
     "test:e2e": "playwright test"
