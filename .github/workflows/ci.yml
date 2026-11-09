@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  node:
+    name: Node.js
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build API and client
+        run: |
+          npm run build
+          npm run build:client
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Run tests
+        run: npm test
+        env:
+          CI: true
+
+  dotnet:
+    name: .NET
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore csharp-backend/FahrenheitConverter.slnx
+
+      - name: Build
+        run: dotnet build csharp-backend/FahrenheitConverter.slnx --configuration Release --no-restore
+
+      - name: Run tests
+        run: dotnet test csharp-backend/FahrenheitConverter.slnx --configuration Release --no-build
