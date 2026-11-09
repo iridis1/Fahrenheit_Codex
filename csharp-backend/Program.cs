@@ -18,7 +18,7 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "Fahrenheit Converter Service",
+        Title = "Temperatuur Converter Service",
         Version = "1.0.0",
         Description = "Web service for temperature conversions between Kelvin, Celsius, and Fahrenheit."
     });
@@ -50,7 +50,7 @@ app.UseSwagger(options =>
 app.UseSwaggerUI(options =>
 {
     options.RoutePrefix = "api-docs";
-    options.SwaggerEndpoint("/openapi.json", "Fahrenheit Converter Service v1");
+    options.SwaggerEndpoint("/openapi.json", "Temperatuur Converter Service v1");
 });
 
 app.MapControllers();
