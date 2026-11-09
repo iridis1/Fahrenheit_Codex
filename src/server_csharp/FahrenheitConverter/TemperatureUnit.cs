@@ -1,4 +1,4 @@
-namespace FahrenheitConverter.Api;
+namespace FahrenheitConverter;
 
 public enum TemperatureUnit
 {
