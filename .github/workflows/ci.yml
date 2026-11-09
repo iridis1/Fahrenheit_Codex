@@ -50,10 +50,10 @@ jobs:
           dotnet-version: 10.0.x
 
       - name: Restore dependencies
-        run: dotnet restore csharp-backend/FahrenheitConverter.slnx
+        run: dotnet restore src/server_csharp/FahrenheitConverter.slnx
 
       - name: Build
-        run: dotnet build csharp-backend/FahrenheitConverter.slnx --configuration Release --no-restore
+        run: dotnet build src/server_csharp/FahrenheitConverter.slnx --configuration Release --no-restore
 
       - name: Run tests
-        run: dotnet test csharp-backend/FahrenheitConverter.slnx --configuration Release --no-build
+        run: dotnet test src/FahrenheitConverter.slnx --configuration Release --no-build
