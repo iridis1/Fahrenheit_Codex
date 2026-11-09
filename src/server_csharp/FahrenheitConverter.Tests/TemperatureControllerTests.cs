@@ -1,8 +1,8 @@
-using FahrenheitConverter.Api.Controllers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using FahrenheitConverter.Controllers;
 
-namespace FahrenheitConverter.Api.Tests;
+namespace FahrenheitConverter.Tests;
 
 public sealed class TemperatureControllerTests
 {

@@ -2,7 +2,7 @@ using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
 
-namespace FahrenheitConverter.Api.Controllers;
+namespace FahrenheitConverter.Controllers;
 
 [ApiController]
 [Route("")]

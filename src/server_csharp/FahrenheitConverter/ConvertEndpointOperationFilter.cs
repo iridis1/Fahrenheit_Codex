@@ -2,7 +2,7 @@ using System.Text.Json.Nodes;
 using Microsoft.OpenApi;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace FahrenheitConverter.Api;
+namespace FahrenheitConverter;
 
 public sealed class ConvertEndpointOperationFilter : IOperationFilter
 {

@@ -1,4 +1,4 @@
-namespace FahrenheitConverter.Api;
+namespace FahrenheitConverter;
 
 public sealed record TemperatureResult(double Kelvin, double Celsius, double Fahrenheit);
 

@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "FahrenheitConverter.Api": {
+    "FahrenheitConverter": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

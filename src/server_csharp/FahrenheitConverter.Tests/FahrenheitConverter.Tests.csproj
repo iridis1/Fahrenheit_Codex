@@ -15,8 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\csharp-backend\FahrenheitConverter.Api.csproj" />
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <ProjectReference Include="..\FahrenheitConverter\FahrenheitConverter.csproj" />
   </ItemGroup>
 
   <ItemGroup>
