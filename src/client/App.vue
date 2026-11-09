@@ -83,7 +83,7 @@ async function convertTemperature() {
   <main class="page-shell">
     <section class="converter-panel" aria-labelledby="page-title">
       <div class="intro">
-        <p class="eyebrow">Fahrenheit Converter Service</p>
+        <p class="eyebrow">Temperatuur Converter Service</p>
         <h1 id="page-title">Temperatuurconverter</h1>
         <p class="lede">Reken snel om tussen Celsius, Fahrenheit en Kelvin.</p>
       </div>

@@ -1,4 +1,4 @@
-name: Build and test
+name: CI
 
 on:
   push:
@@ -8,11 +8,11 @@ permissions:
   contents: read
 
 jobs:
-  build-and-test:
+  node:
+    name: Node.js
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check out source
+      - name: Check out repository
         uses: actions/checkout@v4
 
       - name: Set up Node.js
@@ -21,20 +21,39 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Install Node.js dependencies
-        run: npm ci --ignore-scripts
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Build TypeScript API
-        run: npm run build
+      - name: Build API and client
+        run: |
+          npm run build
+          npm run build:client
 
-      - name: Build Vue client
-        run: npm run build:client
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
 
-      - name: Run unit tests
+      - name: Run tests
         run: npm test
+        env:
+          CI: true
 
-      - name: Install Playwright browsers
-        run: ./node_modules/.bin/playwright install --with-deps chromium
+  dotnet:
+    name: .NET
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
 
-      - name: Run end-to-end tests
-        run: npm run test:e2e
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore csharp-backend/FahrenheitConverter.slnx
+
+      - name: Build
+        run: dotnet build csharp-backend/FahrenheitConverter.slnx --configuration Release --no-restore
+
+      - name: Run tests
+        run: dotnet test csharp-backend/FahrenheitConverter.slnx --configuration Release --no-build

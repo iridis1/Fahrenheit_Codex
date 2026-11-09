@@ -72,7 +72,7 @@ function createOpenApiDocument(port: number) {
   return {
     openapi: "3.0.3",
     info: {
-      title: "Fahrenheit Converter Service",
+      title: "Temperatuur Converter Service",
       version: "1.0.0",
       description: "Webservice voor temperatuurconversies tussen Kelvin, Celsius en Fahrenheit."
     },

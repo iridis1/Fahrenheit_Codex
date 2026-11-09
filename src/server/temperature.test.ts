@@ -1,3 +1,4 @@
+import { describe, expect, it } from "@jest/globals";
 import { TemperatureConverter } from "./temperature";
 
 const temperatureConverter = new TemperatureConverter();

@@ -1,4 +1,5 @@
 import request from "supertest";
+import { describe, expect, it } from "@jest/globals";
 import { createApp } from "./app";
 
 const app = createApp();
@@ -69,7 +70,7 @@ describe("overige routes", () => {
     expect(response.body).toMatchObject({
       openapi: "3.0.3",
       info: {
-        title: "Fahrenheit Converter Service"
+        title: "Temperatuur Converter Service"
       }
     });
   });
