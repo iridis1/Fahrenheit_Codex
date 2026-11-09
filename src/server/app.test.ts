@@ -70,7 +70,7 @@ describe("overige routes", () => {
     expect(response.body).toMatchObject({
       openapi: "3.0.3",
       info: {
-        title: "Fahrenheit Converter Service"
+        title: "Temperatuur Converter Service"
       }
     });
   });

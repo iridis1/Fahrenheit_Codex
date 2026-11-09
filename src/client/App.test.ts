@@ -12,7 +12,7 @@ describe("Temperatuurconverter", () => {
 
     expect(wrapper.get("h1").text()).toBe("Temperatuurconverter");
     expect(wrapper.get("input").element.value).toBe("20");
-    expect((wrapper.get("select").element as HTMLSelectElement).selectedOptions[0].text).toBe("Celsius");
+    expect((wrapper.get("select").element as HTMLSelectElement).selectedOptions[0].text).toEqual("Celsius");
     expect(wrapper.get("button").text()).toBe("Converteer Celsius");
   });
 
@@ -20,7 +20,9 @@ describe("Temperatuurconverter", () => {
     const fetchMock = vi.fn().mockResolvedValue({
       ok: true,
       json: async () => ({
-        result: { kelvin: 293.15, celsius: 20, fahrenheit: 68 }
+        kelvin: 293.15,
+        celsius: 20,
+        fahrenheit: 68
       })
     });
     vi.stubGlobal("fetch", fetchMock);
@@ -31,7 +33,7 @@ describe("Temperatuurconverter", () => {
 
     expect(fetchMock).toHaveBeenCalledWith("/convert?celsius=20");
     expect(wrapper.find(".results").exists()).toBe(true);
-    expect(wrapper.findAll(".result-card").map((card) => card.text())).toEqual([
+    expect(wrapper.findAll(".result-card").map((card) => card.text())).toBe([
       "Celsius20°C",
       "Fahrenheit68°F",
       "Kelvin293.15K"
