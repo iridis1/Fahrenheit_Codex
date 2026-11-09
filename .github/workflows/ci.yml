@@ -56,4 +56,4 @@ jobs:
         run: dotnet build src/server_csharp/FahrenheitConverter.slnx --configuration Release --no-restore
 
       - name: Run tests
-        run: dotnet test src/FahrenheitConverter.slnx --configuration Release --no-build
+        run: dotnet test src/server_csharp/FahrenheitConverter.slnx --configuration Release --no-build
