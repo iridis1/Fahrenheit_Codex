@@ -50,7 +50,7 @@ public sealed class TemperatureController : ControllerBase
             return BadRequest(new ErrorResponse($"{unit.GetQueryName()} must be a valid number."));
         }
 
-        if (value > 100000)
+        if (value > 200000)
         {
             return BadRequest(new ErrorResponse("Value is too high."));
         }
