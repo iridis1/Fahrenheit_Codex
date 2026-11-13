@@ -51,6 +51,15 @@ describe("GET /convert", () => {
       error: "kelvin mag niet lager zijn dan het absolute nulpunt."
     });
   });
+
+    it("geeft 400 als de temperatuur hoger is dan 200000", async () => {
+    const response = await request(app).get("/convert").query({ kelvin: 200001 });
+
+    expect(response.status).toBe(400);
+    expect(response.body).toEqual({
+      error: "Temperature must not exceed 200000 degrees."
+    });
+  });
 });
 
 describe("overige routes", () => {

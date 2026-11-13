@@ -49,7 +49,15 @@ export function createApp(port = 3000) {
       });
     }
 
-    return res.json(temperatureConverter.convertTemperature(unit, value));
+    try {
+      return res.json(temperatureConverter.convertTemperature(unit, value));
+    } catch (error) {
+      if (error instanceof RangeError) {
+        return res.status(400).json({ error: error.message });
+      }
+
+      throw error;
+    }
   });
 
   const clientBuildPath = path.join(process.cwd(), "dist-client");

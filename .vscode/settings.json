@@ -1,0 +1,4 @@
+{
+  "jest.jestCommandLine": "npm run test:server --",
+  "jest.testExplorer.testCommand": "npm run test:server --"
+}

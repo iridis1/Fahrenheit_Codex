@@ -17,9 +17,7 @@ export class TemperatureConverter {
     if (value > 200000) {
       throw new RangeError("Temperature must not exceed 200000 degrees.");
     }
-    if (value === 8888) {
-      throw new RangeError("Temperature must not be 7777.");
-    }
+
     const celsius = this.toCelsius(unit, value);
 
     return {
