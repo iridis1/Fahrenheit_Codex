@@ -2,6 +2,7 @@ import { describe, expect, it } from "@jest/globals";
 import { TemperatureConverter } from "./temperature";
 
 const temperatureConverter = new TemperatureConverter();
+const maxAllowedInputValue = 200000;
 
 describe("convertTemperature", () => {
   it("converteert Celsius naar Kelvin en Fahrenheit", () => {
@@ -35,6 +36,14 @@ describe("convertTemperature", () => {
       fahrenheit: -459.67
     });
   });
+
+  it(`accepteert een invoer van ${maxAllowedInputValue} graden`, () => {
+    expect(() => temperatureConverter.convertTemperature("kelvin", maxAllowedInputValue)).not.toThrow(RangeError);
+  });
+
+  it(`weigert een invoer hoger dan ${maxAllowedInputValue} graden`, () => {
+    expect(() => temperatureConverter.convertTemperature("kelvin", maxAllowedInputValue + 1 )).toThrow(RangeError);
+  });
 });
 
 describe("isBelowAbsoluteZero", () => {
@@ -63,6 +72,8 @@ describe("isFreezingTemp", () => {
   it("herkent temperaturen boven het vriespunt niet als vriespunt", () => {
     expect(temperatureConverter.isFreezingTemp("celsius", 1)).toBe(false);
     expect(temperatureConverter.isFreezingTemp("fahrenheit", 33)).toBe(false);
-    expect(temperatureConverter.isFreezingTemp("kelvin", 300)).toBe(false);
+    expect(temperatureConverter.isFreezingTemp("kelvin", 274)).toBe(false);
   });
 });
+
+

@@ -29,6 +29,13 @@ npm run dev:client
 
 De API luistert standaard op `http://localhost:3000`. De Vite-frontend luistert op `http://127.0.0.1:5173` en stuurt `/convert`-verzoeken door naar de API op poort 3000. Stel `PORT` in om de API-poort te wijzigen. De Vite-proxy gebruikt standaard nog steeds poort 3000.
 
+Om de gebouwde client afzonderlijk te serveren, bouw deze eerst en start daarna de previewserver:
+
+```powershell
+npm run build:client
+npm run serve:client
+```
+
 ### Productiebuild en starten
 
 Maak beide builds en start daarna de API:
@@ -36,12 +43,10 @@ Maak beide builds en start daarna de API:
 ```powershell
 npm run build
 npm run build:client
-New-Item -ItemType Directory -Force dist-client | Out-Null
-Copy-Item -Path src/client/dist-client/* -Destination dist-client -Recurse -Force
 npm start
 ```
 
-`npm run build:client` schrijft de frontend naar `src/client/dist-client`, relatief aan de Vite-root `src/client`. Kopieer de inhoud daarvan naar `dist-client` in de repositoryroot, zoals hierboven, zodat de server de frontend kan vinden. `npm start` voert de gebouwde API uit vanuit `dist` en serveert de frontend uit de rootmap `dist-client` wanneer die bestaat. De API gebruikt standaard poort `3000`; stel `PORT` in om die te wijzigen.
+`npm run build:client` schrijft de frontend rechtstreeks naar `dist-client` in de repositoryroot. `npm start` voert de gebouwde API uit vanuit `dist` en serveert die frontend wanneer de map bestaat. De API gebruikt standaard poort `3000`; stel `PORT` in om die te wijzigen.
 
 ### npm-commando's
 
@@ -53,8 +58,9 @@ Alle npm-scripts uit `package.json`:
 | `npm run dev` | Start de TypeScript API met watcher voor lokale ontwikkeling. |
 | `npm run serve:api` | Start de TypeScript API zonder watcher; Playwright gebruikt dit om de API voor end-to-endtests te starten. |
 | `npm run dev:client` | Start de Vite-ontwikkelserver voor de Vue-frontend. |
+| `npm run serve:client` | Serveert de gebouwde Vue-frontend via Vite Preview (standaard op `http://127.0.0.1:4173`). Voer eerst `npm run build:client` uit. |
 | `npm run build` | Compileert de TypeScript API naar `dist`. |
-| `npm run build:client` | Bouwt de Vue-frontend naar `src/client/dist-client`; kopieer de inhoud daarna naar `dist-client` in de repositoryroot om die via de API te serveren. |
+| `npm run build:client` | Bouwt de Vue-frontend rechtstreeks naar `dist-client` in de repositoryroot. |
 | `npm start` | Start de gebouwde TypeScript API vanuit `dist/server/index.js`; voer eerst `npm run build` uit. |
 | `npm test` | Voert achtereenvolgens de server-, client- en end-to-endtests uit. |
 | `npm run test:server` | Voert de Jest-tests voor de TypeScript-server uit. |

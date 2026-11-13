@@ -14,6 +14,10 @@ export class TemperatureConverter {
   };
 
   convertTemperature(unit: TemperatureUnit, value: number): TemperatureResult {
+    if (value > 200000) {
+      throw new RangeError("Temperature must not exceed 200000 degrees.");
+    }
+
     const celsius = this.toCelsius(unit, value);
 
     return {

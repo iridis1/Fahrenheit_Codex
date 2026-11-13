@@ -5,7 +5,8 @@ export default defineConfig({
   root: "src/client",
   plugins: [vue()],
   build: {
-    outDir: "dist-client",
+    outDir: "../../dist-client",
+    emptyOutDir: true,
   },
   server: {
     port: 5173,
