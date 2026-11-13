@@ -74,7 +74,7 @@ public sealed class TemperatureControllerTests
     [Fact]
     public void Convert_ReturnsBadRequestWhenTemperatureIsTooHigh()
     {
-        var controller = CreateController(new QueryString("?kelvin=100001"));
+        var controller = CreateController(new QueryString("?kelvin=1000001"));
 
         var result = Assert.IsType<BadRequestObjectResult>(controller.Convert());
         var error = Assert.IsType<ErrorResponse>(result.Value);

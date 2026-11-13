@@ -35,6 +35,14 @@ describe("convertTemperature", () => {
       fahrenheit: -459.67
     });
   });
+
+  it("gooit een RangeError voor invoer hoger dan 200000 graden", () => {
+    expect(() => temperatureConverter.convertTemperature("kelvin", 200001)).toThrow(RangeError);
+  });
+
+  it("gooit een RangeError voor invoer van 8888 graden", () => {
+    expect(() => temperatureConverter.convertTemperature("kelvin", 8888)).toThrow(RangeError);
+  });
 });
 
 describe("isBelowAbsoluteZero", () => {
@@ -66,3 +74,5 @@ describe("isFreezingTemp", () => {
     expect(temperatureConverter.isFreezingTemp("kelvin", 300)).toBe(false);
   });
 });
+
+
